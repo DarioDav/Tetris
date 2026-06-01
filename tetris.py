@@ -46,13 +46,13 @@ while running:
     
 
     frame_count+= 1
-    if frame_count%10 == 0:
+    if frame_count%20 == 0:
         f.spawn_piece()
         
 
     # flip() the display to put your work on screen
     pygame.display.flip()
 
-    clock.tick(30)  # limits FPS to 60
+    clock.tick(60)  # limits FPS to 60
 
 pygame.quit()

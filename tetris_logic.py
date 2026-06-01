@@ -28,21 +28,22 @@ class Tetris:
                             [1],
                             [1],
                             [1]])}
-
-    def spawn_piece (self):
-        key = random.choice(list (self.pieces.keys()))
-        piece = self.pieces[key]
         
-        #spawns a block in a random place on the first row of the array
-        spawn = [0, np.random.randint(0, self.grid.shape[1])]
+        self.current_position = [0,5]
 
+    def select_piece (self):
+        key = random.choice(list (self.pieces.keys()))
+        piece = self.pieces["SQ"]
+        
+    
+        top, left = self.current_position[0], self.current_position[1]
         #Spawn a line
         ph, pw = piece.shape
         
         for r in range (ph):
             for c in range (pw):
                 if piece[r,c]!= 0:
-                    self.grid[0 + r, 5 + c] = 1
+                    self.grid[top + r, left + c] = 1
 
 
         print(self.grid)
@@ -51,14 +52,17 @@ class Tetris:
     #     np.rot90(self.pieces[n])
         
     def move_piece_down (self):
-        coords = np.argwhere(self.grid == 1)
-        print (coords)
+        # coords = np.argwhere(self.grid == 1)
+        # print (coords)
         
-        for n in coords:
-            if self.grid[n[0]-1][n[1]]!= 1:
-                self.grid[n[0]][n[1]]= 0
-            elif self.grid[n[0]-1][n[1]]== 1:
-                self.grid[n[0] +1][n[1]]= 1
+        # for n in coords:
+            
+        #     # self.grid[n[0]][n[1]]= 0
+        #     self.grid[n[0] +1][n[1]]= 1
+
+        self.current_position[0] =+ 1
+        print(self.current_position)
+        self.spawn_piece()
             
         print("NEW GRID")
         print(self.grid)
