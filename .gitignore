@@ -1,4 +1,4 @@
 perp.py
 tetris_log.MD
-__pycache__
-.vscode
+__pycache__/
+.vscode/
