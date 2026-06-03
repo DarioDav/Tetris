@@ -3,7 +3,7 @@ import numpy as np
 import random
 
 #Tetris_pieces class
-# It takes an array representing the board and a list containing the shapes of the pieces    
+  
 class Tetris:
     def __init__(self, width = 20, height = 10 ):
         self.width= width
@@ -29,51 +29,55 @@ class Tetris:
                             [1],
                             [1]])}
         
-        self.current_position = [0,5]
 
-    def select_piece (self):
-        key = random.choice(list (self.pieces.keys()))
-        piece = self.pieces["SQ"]
+        self.current_position = np.array([0,5])
+        self.current_piece = None
+
+    def spawn_piece (self):
+        key = random.choice(list (self.pieces.keys()))# picks one of the pieces at random
+        piece = self.pieces["SQ"] #kept no square for now, change for key later
+        return piece
+
+    def draw_piece (self, piece):
+        #draws the piece in the board at the current position
         
-    
         top, left = self.current_position[0], self.current_position[1]
-        #Spawn a line
+    
         ph, pw = piece.shape
+        grid = self.grid.copy()
         
         for r in range (ph):
             for c in range (pw):
                 if piece[r,c]!= 0:
-                    self.grid[top + r, left + c] = 1
+                    grid[top + r, left + c] = piece[r,c]
+        return grid
 
-
-        print(self.grid)
-
-    # def rotate_piece(self):
-    #     np.rot90(self.pieces[n])
         
     def move_piece_down (self):
-        # coords = np.argwhere(self.grid == 1)
-        # print (coords)
-        
-        # for n in coords:
-            
-        #     # self.grid[n[0]][n[1]]= 0
-        #     self.grid[n[0] +1][n[1]]= 1
 
-        self.current_position[0] =+ 1
-        print(self.current_position)
-        self.spawn_piece()
+        new_top = self.current_position[0] + 1
+        new_left = self.current_position[1] + 0
+
+        print(new_top)
+        self.current_position = [new_top, new_left]
+        return True
+        
             
-        print("NEW GRID")
-        print(self.grid)
     
     def rotate_piece(self):
 
         np.rot90(self)
 
+    def step(self):
+        piece = self.spawn_piece()
+        
+        board = self.draw_piece(piece)
+        print(board)
+        self.move_piece_down()
+        return board
+        
 
 if __name__ == "__main__":
     tetris = Tetris()
-
-    tetris.spawn_piece()
-    tetris.move_piece_down()
+    for s in range(5):
+        tetris.step()
