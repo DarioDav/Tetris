@@ -8,7 +8,7 @@ pygame.init()
 f= Tetris()
 
 BLOCK_SIZE = 30
-WIDTH, HEIGHT = f.height * BLOCK_SIZE, f.width * BLOCK_SIZE
+HEIGHT, WIDTH = f.height * BLOCK_SIZE, f.width * BLOCK_SIZE
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Tetris")
 
@@ -19,8 +19,6 @@ WHITE = (255, 255, 255)
 COLORS = {0: (125,125,125), 
           1: (255, 0, 0), 
           2: (0, 255, 0)}
-
-
 
 #set up the game clock
 clock = pygame.time.Clock()
@@ -36,17 +34,17 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
+        # elif event.type == pygame.KEYDOWN:
+        #         if event.key == pygame.K_UP:
                 
-                    print("Moved selection up")
-                elif event.key == pygame.K_DOWN:
+        #             print("Moved selection up")
+        #         elif event.key == pygame.K_DOWN:
                     
-                    print("Moved selection down")
-                elif event.key == pygame.K_LEFT:
-                    print("Left arrow pressed")
-                elif event.key == pygame.K_RIGHT:
-                    print("Right arrow pressed")
+        #             print("Moved selection down")
+        #         elif event.key == pygame.K_LEFT:
+        #             print("Left arrow pressed")
+        #         elif event.key == pygame.K_RIGHT:
+        #             print("Right arrow pressed")
 
          
 
