@@ -77,6 +77,8 @@ class Tetris:
     def rotate_piece(self):
         if self.check_position()== True:
             self.current_piece = np.rot90(self.current_piece)
+        else:
+            self.current_piece = None
 
     def step(self):
         if self.current_piece is None:
